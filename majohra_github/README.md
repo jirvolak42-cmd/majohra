@@ -1,6 +1,6 @@
 # Májohra
 
-Džunglová skákačka podle kreseb a písma Maji. Hraje se v prohlížeči na počítači i na mobilu.
+Džunglová skákačka podle kreseb a písma Máji. Hraje se v prohlížeči na počítači i na mobilu.
 
 - `index.html` – celá hra (písmo Májopis je vložené uvnitř)
 - `assets/` – Majiny obrázky a dokreslená grafika
