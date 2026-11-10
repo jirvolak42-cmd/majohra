@@ -1,0 +1,19 @@
+rules_version = '2';
+// Jungle League – kdokoli čte, každá hra smí týmu přičíst 1–3 hvězdy a jednu výpravu
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /league/{team} {
+      allow read: if team in ['opice','slon','tygr','krokodyl','papousek','had'];
+      allow create: if team in ['opice','slon','tygr','krokodyl','papousek','had']
+        && request.resource.data.keys().hasOnly(['stars','runs'])
+        && request.resource.data.stars is int && request.resource.data.stars >= 1 && request.resource.data.stars <= 3
+        && request.resource.data.runs == 1;
+      allow update: if request.resource.data.keys().hasOnly(['stars','runs'])
+        && request.resource.data.runs == resource.data.runs + 1
+        && request.resource.data.stars - resource.data.stars >= 1
+        && request.resource.data.stars - resource.data.stars <= 3;
+      allow delete: if false;
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
